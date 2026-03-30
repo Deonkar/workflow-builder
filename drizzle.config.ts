@@ -1,7 +1,10 @@
+import { resolve } from "node:path";
 import { config } from "dotenv";
 import type { Config } from "drizzle-kit";
 
-config();
+const root = process.cwd();
+config({ path: resolve(root, ".env") });
+config({ path: resolve(root, ".env.local"), override: true });
 
 export default {
   schema: "./lib/db/schema.ts",
